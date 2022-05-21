@@ -17,14 +17,15 @@ The samples input to the FFT block are output from an 8-bit ADC
 
 
 
-# Gallery
 
 ## Stage Equations
 ![Stage Equations](Images/Stage_Equations.PNG)
 
 
-## System Design
-![System Design](Images/System_schematic.pdf)
-
 ## MAC Block
-![MAC](Images/MAC.PNG)
+![MAC](Images/MAC.png)
+
+
+## Timing Summary 
+![Timing Summary](Results/Timing_Summary.PNG)
+
