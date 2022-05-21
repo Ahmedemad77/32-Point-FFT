@@ -5,7 +5,7 @@ FFT block should output 20M samples per second.
 The samples input to the FFT block are output from an 8-bit ADC
 
 
-![32-Point-FFT Signal Flow](Images\Signal_Flow_Graph.PNG)
+![32-Point-FFT Signal Flow](Images/Signal_Flow_Graph.PNG)
 
 # The repository contains:
 * PDF file showing the Stage Equations Based on signal Flow Graph. 
@@ -20,11 +20,11 @@ The samples input to the FFT block are output from an 8-bit ADC
 # Gallery
 
 ## Stage Equations
-![Stage Equations](Images\Stage_Equations.PNG)
+![Stage Equations](Images/Stage_Equations.PNG)
 
 
 ## System Design
-![System Design](Images\System_schematic.pdf)
+![System Design](Images/System_schematic.pdf)
 
 ## MAC Block
-![MAC](Images\MAC.PNG)
+![MAC](Images/MAC.PNG)
