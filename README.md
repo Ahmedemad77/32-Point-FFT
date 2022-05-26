@@ -9,10 +9,10 @@ The samples input to the FFT block are output from an 8-bit ADC
 * PDF file showing the Stage Equations Based on signal Flow Graph. 
 * shematic exported from vivado & Drawio illustrating the design of the MAC , Stage ,and the whole System
 * Perl Scripts on for each stage that generate instantiation of the MACs blocks with same order of the equations
+* Pyton Files for extraction of the constants and quantize it  
 * Design Document containing the design & results 
 * Verilog Files of the implemtation 
 * Result of the Timing Simulation 
-
 
 
 ## 32-Point-FFT Signal Flow
