@@ -1,0 +1,176 @@
+`ifndef INTERFACE_SV
+`define INTERFACE_SV
+
+
+interface FFT_Dut_Interface#(parameter DATA_WIDTH = 32 ,ADC_DATA_WIDTH=8 )(input clk,input reset);
+    // Include The Input and output of the DUT 
+    logic PU_enable;
+
+	logic [ADC_DATA_WIDTH-1:0] ADC_in_real[8];
+	logic [DATA_WIDTH-1:0] FFT_RESULT_0_real[32];
+	logic [DATA_WIDTH-1:0] FFT_RESULT_0_imag[32];
+		
+    logic [ADC_DATA_WIDTH-1:0] ADC_in0_real;
+
+    logic [ADC_DATA_WIDTH-1:0] ADC_in1_real;
+
+    logic [ADC_DATA_WIDTH-1:0] ADC_in2_real;
+
+    logic [ADC_DATA_WIDTH-1:0] ADC_in3_real;
+
+    logic [ADC_DATA_WIDTH-1:0] ADC_in4_real;
+
+    logic [ADC_DATA_WIDTH-1:0] ADC_in5_real;
+
+    logic [ADC_DATA_WIDTH-1:0] ADC_in6_real;
+
+    logic [ADC_DATA_WIDTH-1:0] ADC_in7_real;
+
+    logic [ADC_DATA_WIDTH-1:0] ADC_in8_real;
+
+    logic [ADC_DATA_WIDTH-1:0] ADC_in9_real;
+
+    logic [ADC_DATA_WIDTH-1:0] ADC_in10_real;
+
+    logic [ADC_DATA_WIDTH-1:0] ADC_in11_real;
+
+    logic [ADC_DATA_WIDTH-1:0] ADC_in12_real;
+
+    logic [ADC_DATA_WIDTH-1:0] ADC_in13_real;
+
+    logic [ADC_DATA_WIDTH-1:0] ADC_in14_real;
+
+    logic [ADC_DATA_WIDTH-1:0] ADC_in15_real;
+
+    logic [ADC_DATA_WIDTH-1:0] ADC_in16_real;
+
+    logic [ADC_DATA_WIDTH-1:0] ADC_in17_real;
+
+    logic [ADC_DATA_WIDTH-1:0] ADC_in18_real;
+
+    logic [ADC_DATA_WIDTH-1:0] ADC_in19_real;
+
+    logic [ADC_DATA_WIDTH-1:0] ADC_in20_real;
+
+    logic [ADC_DATA_WIDTH-1:0] ADC_in21_real;
+
+    logic [ADC_DATA_WIDTH-1:0] ADC_in22_real;
+
+    logic [ADC_DATA_WIDTH-1:0] ADC_in23_real;
+
+    logic [ADC_DATA_WIDTH-1:0] ADC_in24_real;
+
+    logic [ADC_DATA_WIDTH-1:0] ADC_in25_real;
+
+    logic [ADC_DATA_WIDTH-1:0] ADC_in26_real;
+
+    logic [ADC_DATA_WIDTH-1:0] ADC_in27_real;
+
+    logic [ADC_DATA_WIDTH-1:0] ADC_in28_real;
+
+    logic [ADC_DATA_WIDTH-1:0] ADC_in29_real;
+
+    logic [ADC_DATA_WIDTH-1:0] ADC_in30_real;
+
+    logic [ADC_DATA_WIDTH-1:0] ADC_in31_real;
+
+
+	logic [DATA_WIDTH-1:0] FFT_RESULT_0_real;
+	logic [DATA_WIDTH-1:0] FFT_RESULT_0_imag;
+
+	logic [DATA_WIDTH-1:0] FFT_RESULT_1_real;
+	logic [DATA_WIDTH-1:0] FFT_RESULT_1_imag;
+
+	logic [DATA_WIDTH-1:0] FFT_RESULT_2_real;
+	logic [DATA_WIDTH-1:0] FFT_RESULT_2_imag;
+
+	logic [DATA_WIDTH-1:0] FFT_RESULT_3_real;
+	logic [DATA_WIDTH-1:0] FFT_RESULT_3_imag;
+
+	logic [DATA_WIDTH-1:0] FFT_RESULT_4_real;
+	logic [DATA_WIDTH-1:0] FFT_RESULT_4_imag;
+
+	logic [DATA_WIDTH-1:0] FFT_RESULT_5_real;
+	logic [DATA_WIDTH-1:0] FFT_RESULT_5_imag;
+
+	logic [DATA_WIDTH-1:0] FFT_RESULT_6_real;
+	logic [DATA_WIDTH-1:0] FFT_RESULT_6_imag;
+
+	logic [DATA_WIDTH-1:0] FFT_RESULT_7_real;
+	logic [DATA_WIDTH-1:0] FFT_RESULT_7_imag;
+
+	logic [DATA_WIDTH-1:0] FFT_RESULT_8_real;
+	logic [DATA_WIDTH-1:0] FFT_RESULT_8_imag;
+
+	logic [DATA_WIDTH-1:0] FFT_RESULT_9_real;
+	logic [DATA_WIDTH-1:0] FFT_RESULT_9_imag;
+
+	logic [DATA_WIDTH-1:0] FFT_RESULT_10_real;
+	logic [DATA_WIDTH-1:0] FFT_RESULT_10_imag;
+
+	logic [DATA_WIDTH-1:0] FFT_RESULT_11_real;
+	logic [DATA_WIDTH-1:0] FFT_RESULT_11_imag;
+
+	logic [DATA_WIDTH-1:0] FFT_RESULT_12_real;
+	logic [DATA_WIDTH-1:0] FFT_RESULT_12_imag;
+
+	logic [DATA_WIDTH-1:0] FFT_RESULT_13_real;
+	logic [DATA_WIDTH-1:0] FFT_RESULT_13_imag;
+
+	logic [DATA_WIDTH-1:0] FFT_RESULT_14_real;
+	logic [DATA_WIDTH-1:0] FFT_RESULT_14_imag;
+
+	logic [DATA_WIDTH-1:0] FFT_RESULT_15_real;
+	logic [DATA_WIDTH-1:0] FFT_RESULT_15_imag;
+
+	logic [DATA_WIDTH-1:0] FFT_RESULT_16_real;
+	logic [DATA_WIDTH-1:0] FFT_RESULT_16_imag;
+
+	logic [DATA_WIDTH-1:0] FFT_RESULT_17_real;
+	logic [DATA_WIDTH-1:0] FFT_RESULT_17_imag;
+
+	logic [DATA_WIDTH-1:0] FFT_RESULT_18_real;
+	logic [DATA_WIDTH-1:0] FFT_RESULT_18_imag;
+
+	logic [DATA_WIDTH-1:0] FFT_RESULT_19_real;
+	logic [DATA_WIDTH-1:0] FFT_RESULT_19_imag;
+
+	logic [DATA_WIDTH-1:0] FFT_RESULT_20_real;
+	logic [DATA_WIDTH-1:0] FFT_RESULT_20_imag;
+
+	logic [DATA_WIDTH-1:0] FFT_RESULT_21_real;
+	logic [DATA_WIDTH-1:0] FFT_RESULT_21_imag;
+
+	logic [DATA_WIDTH-1:0] FFT_RESULT_22_real;
+	logic [DATA_WIDTH-1:0] FFT_RESULT_22_imag;
+
+	logic [DATA_WIDTH-1:0] FFT_RESULT_23_real;
+	logic [DATA_WIDTH-1:0] FFT_RESULT_23_imag;
+
+	logic [DATA_WIDTH-1:0] FFT_RESULT_24_real;
+	logic [DATA_WIDTH-1:0] FFT_RESULT_24_imag;
+
+	logic [DATA_WIDTH-1:0] FFT_RESULT_25_real;
+	logic [DATA_WIDTH-1:0] FFT_RESULT_25_imag;
+
+	logic [DATA_WIDTH-1:0] FFT_RESULT_26_real;
+	logic [DATA_WIDTH-1:0] FFT_RESULT_26_imag;
+
+	logic [DATA_WIDTH-1:0] FFT_RESULT_27_real;
+	logic [DATA_WIDTH-1:0] FFT_RESULT_27_imag;
+
+	logic [DATA_WIDTH-1:0] FFT_RESULT_28_real;
+	logic [DATA_WIDTH-1:0] FFT_RESULT_28_imag;
+
+	logic [DATA_WIDTH-1:0] FFT_RESULT_29_real;
+	logic [DATA_WIDTH-1:0] FFT_RESULT_29_imag;
+
+	logic [DATA_WIDTH-1:0] FFT_RESULT_30_real;
+	logic [DATA_WIDTH-1:0] FFT_RESULT_30_imag;
+
+	logic [DATA_WIDTH-1:0] FFT_RESULT_31_real;
+	logic [DATA_WIDTH-1:0] FFT_RESULT_31_imag;
+
+endinterface
+
+`endif 

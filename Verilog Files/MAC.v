@@ -59,7 +59,7 @@ always @(posedge clk ,posedge reset) begin
         out2_real <={DATA_WIDTH{1'b0}};
         out2_imag <={DATA_WIDTH{1'b0}};
     end
-    else if (sel[2]==1'b1) begin // First 2 Clks
+    else if (sel[2]==1'b1) begin 
         out1_real <= ACC1_Real;
         out1_imag <= ACC1_IMAG;
         out2_real <= ACC2_REAL;

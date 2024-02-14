@@ -1,0 +1,212 @@
+
+`include "uvm_macros.svh"
+import uvm_pkg::*;
+`include "FFT_interface.sv"
+`include "FFT_Seq_Item.sv"
+
+class FFT_Monitor extends uvm_monitor;
+    `uvm_component_utils(FFT_Monitor);
+    //Get the Virtual Interface 
+    virtual FFT_Dut_Interface vinf;
+    FFT_Seq_Item#() mon_item;
+    //Define Anaylsis Port 
+    uvm_analysis_port #(FFT_Seq_Item#()) analysis_port;
+    int counter;
+    function new(string name = "FFT_monitor",uvm_component parent = null);
+        super.new(name,parent);
+    endfunction
+
+    function void build_phase(uvm_phase phase);
+        super.build_phase(phase);
+        // Get the Virtual Interface From the Configration Db 
+        if (!uvm_config_db#(virtual FFT_Dut_Interface)::get(this,"*","FFT_INTERFACE",vinf)) begin
+            `uvm_error(get_type_name(),"Can Not reterive the Interface Parmeter");
+        end
+        analysis_port = new ("analysis_port",this);
+        FFT_Seq_Item = FFT_Seq_Item#()::type_id::create();
+    endfunction
+
+    task run_phase(uvm_phase phase);
+        super.run_phase(phase);
+        //Obtain the Logic Here 
+        // forever begin
+            @(posedge mem_Vinf.clk);
+            if (vinf.PU_enable) begin
+                // Register the Input Data 
+
+                mon_item.ADC_in0_real =  vinf.ADC_in0_real ; 
+                mon_item.ADC_in1_real =  vinf.ADC_in1_real ; 
+                mon_item.ADC_in2_real =  vinf.ADC_in2_real ; 
+                mon_item.ADC_in3_real =  vinf.ADC_in3_real ; 
+                mon_item.ADC_in4_real =  vinf.ADC_in4_real ; 
+                mon_item.ADC_in5_real =  vinf.ADC_in5_real ; 
+                mon_item.ADC_in6_real =  vinf.ADC_in6_real ; 
+                mon_item.ADC_in7_real =  vinf.ADC_in7_real ; 
+                mon_item.ADC_in8_real =  vinf.ADC_in8_real ; 
+                mon_item.ADC_in9_real =  vinf.ADC_in9_real ; 
+                mon_item.ADC_in10_real =  vinf.ADC_in10_real ; 
+                mon_item.ADC_in11_real =  vinf.ADC_in11_real ; 
+                mon_item.ADC_in12_real =  vinf.ADC_in12_real ; 
+                mon_item.ADC_in13_real =  vinf.ADC_in13_real ; 
+                mon_item.ADC_in14_real =  vinf.ADC_in14_real ; 
+                mon_item.ADC_in15_real =  vinf.ADC_in15_real ; 
+                mon_item.ADC_in16_real =  vinf.ADC_in16_real ; 
+                mon_item.ADC_in17_real =  vinf.ADC_in17_real ; 
+                mon_item.ADC_in18_real =  vinf.ADC_in18_real ; 
+                mon_item.ADC_in19_real =  vinf.ADC_in19_real ; 
+                mon_item.ADC_in20_real =  vinf.ADC_in20_real ; 
+                mon_item.ADC_in21_real =  vinf.ADC_in21_real ; 
+                mon_item.ADC_in22_real =  vinf.ADC_in22_real ; 
+                mon_item.ADC_in23_real =  vinf.ADC_in23_real ; 
+                mon_item.ADC_in24_real =  vinf.ADC_in24_real ; 
+                mon_item.ADC_in25_real =  vinf.ADC_in25_real ; 
+                mon_item.ADC_in26_real =  vinf.ADC_in26_real ; 
+                mon_item.ADC_in27_real =  vinf.ADC_in27_real ; 
+                mon_item.ADC_in28_real =  vinf.ADC_in28_real ; 
+                mon_item.ADC_in29_real =  vinf.ADC_in29_real ; 
+                mon_item.ADC_in30_real =  vinf.ADC_in30_real ; 
+                mon_item.ADC_in31_real =  vinf.ADC_in31_real ;
+                
+                counter = 1;
+                while (counter<25) begin
+                    @(posedge vinf.clk);
+                    counter = counter +1;
+                end
+                // Register 
+                mon_item.FFT_RESULT_0_real = vinf.FFT_RESULT_0_real;
+                mon_item.FFT_RESULT_0_imag = vinf.FFT_RESULT_0_imag;
+                mon_item.FFT_RESULT_1_real = vinf.FFT_RESULT_1_real;
+                mon_item.FFT_RESULT_1_imag = vinf.FFT_RESULT_1_imag;
+                mon_item.FFT_RESULT_2_real = vinf.FFT_RESULT_2_real;
+                mon_item.FFT_RESULT_2_imag = vinf.FFT_RESULT_2_imag;
+                mon_item.FFT_RESULT_3_real = vinf.FFT_RESULT_3_real;
+                mon_item.FFT_RESULT_3_imag = vinf.FFT_RESULT_3_imag;
+                mon_item.FFT_RESULT_4_real = vinf.FFT_RESULT_4_real;
+                mon_item.FFT_RESULT_4_imag = vinf.FFT_RESULT_4_imag;
+                mon_item.FFT_RESULT_5_real = vinf.FFT_RESULT_5_real;
+                mon_item.FFT_RESULT_5_imag = vinf.FFT_RESULT_5_imag;
+                mon_item.FFT_RESULT_6_real = vinf.FFT_RESULT_6_real;
+                mon_item.FFT_RESULT_6_imag = vinf.FFT_RESULT_6_imag;
+                mon_item.FFT_RESULT_7_real = vinf.FFT_RESULT_7_real;
+                mon_item.FFT_RESULT_7_imag = vinf.FFT_RESULT_7_imag;
+                mon_item.FFT_RESULT_8_real = vinf.FFT_RESULT_8_real;
+                mon_item.FFT_RESULT_8_imag = vinf.FFT_RESULT_8_imag;
+                mon_item.FFT_RESULT_9_real = vinf.FFT_RESULT_9_real;
+                mon_item.FFT_RESULT_9_imag = vinf.FFT_RESULT_9_imag;
+                mon_item.FFT_RESULT_10_real = vinf.FFT_RESULT_10_real;
+                mon_item.FFT_RESULT_10_imag = vinf.FFT_RESULT_10_imag;
+                mon_item.FFT_RESULT_11_real = vinf.FFT_RESULT_11_real;
+                mon_item.FFT_RESULT_11_imag = vinf.FFT_RESULT_11_imag;
+                mon_item.FFT_RESULT_12_real = vinf.FFT_RESULT_12_real;
+                mon_item.FFT_RESULT_12_imag = vinf.FFT_RESULT_12_imag;
+                mon_item.FFT_RESULT_13_real = vinf.FFT_RESULT_13_real;
+                mon_item.FFT_RESULT_13_imag = vinf.FFT_RESULT_13_imag;
+                mon_item.FFT_RESULT_14_real = vinf.FFT_RESULT_14_real;
+                mon_item.FFT_RESULT_14_imag = vinf.FFT_RESULT_14_imag;
+                mon_item.FFT_RESULT_15_real = vinf.FFT_RESULT_15_real;
+                mon_item.FFT_RESULT_15_imag = vinf.FFT_RESULT_15_imag;
+                mon_item.FFT_RESULT_16_real = vinf.FFT_RESULT_16_real;
+                mon_item.FFT_RESULT_16_imag = vinf.FFT_RESULT_16_imag;
+                mon_item.FFT_RESULT_17_real = vinf.FFT_RESULT_17_real;
+                mon_item.FFT_RESULT_17_imag = vinf.FFT_RESULT_17_imag;
+                mon_item.FFT_RESULT_18_real = vinf.FFT_RESULT_18_real;
+                mon_item.FFT_RESULT_18_imag = vinf.FFT_RESULT_18_imag;
+                mon_item.FFT_RESULT_19_real = vinf.FFT_RESULT_19_real;
+                mon_item.FFT_RESULT_19_imag = vinf.FFT_RESULT_19_imag;
+                mon_item.FFT_RESULT_20_real = vinf.FFT_RESULT_20_real;
+                mon_item.FFT_RESULT_20_imag = vinf.FFT_RESULT_20_imag;
+                mon_item.FFT_RESULT_21_real = vinf.FFT_RESULT_21_real;
+                mon_item.FFT_RESULT_21_imag = vinf.FFT_RESULT_21_imag;
+                mon_item.FFT_RESULT_22_real = vinf.FFT_RESULT_22_real;
+                mon_item.FFT_RESULT_22_imag = vinf.FFT_RESULT_22_imag;
+                mon_item.FFT_RESULT_23_real = vinf.FFT_RESULT_23_real;
+                mon_item.FFT_RESULT_23_imag = vinf.FFT_RESULT_23_imag;
+                mon_item.FFT_RESULT_24_real = vinf.FFT_RESULT_24_real;
+                mon_item.FFT_RESULT_24_imag = vinf.FFT_RESULT_24_imag;
+                mon_item.FFT_RESULT_25_real = vinf.FFT_RESULT_25_real;
+                mon_item.FFT_RESULT_25_imag = vinf.FFT_RESULT_25_imag;
+                mon_item.FFT_RESULT_26_real = vinf.FFT_RESULT_26_real;
+                mon_item.FFT_RESULT_26_imag = vinf.FFT_RESULT_26_imag;
+                mon_item.FFT_RESULT_27_real = vinf.FFT_RESULT_27_real;
+                mon_item.FFT_RESULT_27_imag = vinf.FFT_RESULT_27_imag;
+                mon_item.FFT_RESULT_28_real = vinf.FFT_RESULT_28_real;
+                mon_item.FFT_RESULT_28_imag = vinf.FFT_RESULT_28_imag;
+                mon_item.FFT_RESULT_29_real = vinf.FFT_RESULT_29_real;
+                mon_item.FFT_RESULT_29_imag = vinf.FFT_RESULT_29_imag;
+                mon_item.FFT_RESULT_30_real = vinf.FFT_RESULT_30_real;
+                mon_item.FFT_RESULT_30_imag = vinf.FFT_RESULT_30_imag;
+                mon_item.FFT_RESULT_31_real = vinf.FFT_RESULT_31_real;
+                mon_item.FFT_RESULT_31_imag = vinf.FFT_RESULT_31_imag;
+
+                `uvm_info(get_type_name(),$sformatf("vinf.FFT_RESULT_0_real  %d",vinf.FFT_RESULT_0_real>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf("vinf.FFT_RESULT_0_imag  %d",vinf.FFT_RESULT_0_imag>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf("vinf.FFT_RESULT_1_real  %d",vinf.FFT_RESULT_1_real>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf("vinf.FFT_RESULT_1_imag  %d",vinf.FFT_RESULT_1_imag>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf("vinf.FFT_RESULT_2_real  %d",vinf.FFT_RESULT_2_real>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf("vinf.FFT_RESULT_2_imag  %d",vinf.FFT_RESULT_2_imag>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf("vinf.FFT_RESULT_3_real  %d",vinf.FFT_RESULT_3_real>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf("vinf.FFT_RESULT_3_imag  %d",vinf.FFT_RESULT_3_imag>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf("vinf.FFT_RESULT_4_real  %d",vinf.FFT_RESULT_4_real>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf("vinf.FFT_RESULT_4_imag  %d",vinf.FFT_RESULT_4_imag>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf("vinf.FFT_RESULT_5_real  %d",vinf.FFT_RESULT_5_real>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf("vinf.FFT_RESULT_5_imag  %d",vinf.FFT_RESULT_5_imag>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf("vinf.FFT_RESULT_6_real  %d",vinf.FFT_RESULT_6_real>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf("vinf.FFT_RESULT_6_imag  %d",vinf.FFT_RESULT_6_imag>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf("vinf.FFT_RESULT_7_real  %d",vinf.FFT_RESULT_7_real>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf("vinf.FFT_RESULT_7_imag  %d",vinf.FFT_RESULT_7_imag>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf("vinf.FFT_RESULT_8_real  %d",vinf.FFT_RESULT_8_real>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf("vinf.FFT_RESULT_8_imag  %d",vinf.FFT_RESULT_8_imag>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf("vinf.FFT_RESULT_9_real  %d",vinf.FFT_RESULT_9_real>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf("vinf.FFT_RESULT_9_imag  %d",vinf.FFT_RESULT_9_imag>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf(" vinf.FFT_RESULT_10_real  %d", vinf.FFT_RESULT_10_real>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf(" vinf.FFT_RESULT_10_imag  %d", vinf.FFT_RESULT_10_imag>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf(" vinf.FFT_RESULT_11_real  %d", vinf.FFT_RESULT_11_real>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf(" vinf.FFT_RESULT_11_imag  %d", vinf.FFT_RESULT_11_imag>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf(" vinf.FFT_RESULT_12_real  %d", vinf.FFT_RESULT_12_real>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf(" vinf.FFT_RESULT_12_imag  %d", vinf.FFT_RESULT_12_imag>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf(" vinf.FFT_RESULT_13_real  %d", vinf.FFT_RESULT_13_real>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf(" vinf.FFT_RESULT_13_imag  %d", vinf.FFT_RESULT_13_imag>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf(" vinf.FFT_RESULT_14_real  %d", vinf.FFT_RESULT_14_real>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf(" vinf.FFT_RESULT_14_imag  %d", vinf.FFT_RESULT_14_imag>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf(" vinf.FFT_RESULT_15_real  %d", vinf.FFT_RESULT_15_real>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf(" vinf.FFT_RESULT_15_imag  %d", vinf.FFT_RESULT_15_imag>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf(" vinf.FFT_RESULT_16_real  %d", vinf.FFT_RESULT_16_real>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf(" vinf.FFT_RESULT_16_imag  %d", vinf.FFT_RESULT_16_imag>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf(" vinf.FFT_RESULT_17_real  %d", vinf.FFT_RESULT_17_real>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf(" vinf.FFT_RESULT_17_imag  %d", vinf.FFT_RESULT_17_imag>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf(" vinf.FFT_RESULT_18_real  %d", vinf.FFT_RESULT_18_real>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf(" vinf.FFT_RESULT_18_imag  %d", vinf.FFT_RESULT_18_imag>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf(" vinf.FFT_RESULT_19_real  %d", vinf.FFT_RESULT_19_real>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf(" vinf.FFT_RESULT_19_imag  %d", vinf.FFT_RESULT_19_imag>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf(" vinf.FFT_RESULT_20_real  %d", vinf.FFT_RESULT_20_real>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf(" vinf.FFT_RESULT_20_imag  %d", vinf.FFT_RESULT_20_imag>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf(" vinf.FFT_RESULT_21_real  %d", vinf.FFT_RESULT_21_real>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf(" vinf.FFT_RESULT_21_imag  %d", vinf.FFT_RESULT_21_imag>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf(" vinf.FFT_RESULT_22_real  %d", vinf.FFT_RESULT_22_real>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf(" vinf.FFT_RESULT_22_imag  %d", vinf.FFT_RESULT_22_imag>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf(" vinf.FFT_RESULT_23_real  %d", vinf.FFT_RESULT_23_real>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf(" vinf.FFT_RESULT_23_imag  %d", vinf.FFT_RESULT_23_imag>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf(" vinf.FFT_RESULT_24_real  %d", vinf.FFT_RESULT_24_real>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf(" vinf.FFT_RESULT_24_imag  %d", vinf.FFT_RESULT_24_imag>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf(" vinf.FFT_RESULT_25_real  %d", vinf.FFT_RESULT_25_real>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf(" vinf.FFT_RESULT_25_imag  %d", vinf.FFT_RESULT_25_imag>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf(" vinf.FFT_RESULT_26_real  %d", vinf.FFT_RESULT_26_real>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf(" vinf.FFT_RESULT_26_imag  %d", vinf.FFT_RESULT_26_imag>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf(" vinf.FFT_RESULT_27_real  %d", vinf.FFT_RESULT_27_real>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf(" vinf.FFT_RESULT_27_imag  %d", vinf.FFT_RESULT_27_imag>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf(" vinf.FFT_RESULT_28_real  %d", vinf.FFT_RESULT_28_real>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf(" vinf.FFT_RESULT_28_imag  %d", vinf.FFT_RESULT_28_imag>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf(" vinf.FFT_RESULT_29_real  %d", vinf.FFT_RESULT_29_real>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf(" vinf.FFT_RESULT_29_imag  %d", vinf.FFT_RESULT_29_imag>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf(" vinf.FFT_RESULT_30_real  %d", vinf.FFT_RESULT_30_real>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf(" vinf.FFT_RESULT_30_imag  %d", vinf.FFT_RESULT_30_imag>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf(" vinf.FFT_RESULT_31_real  %d", vinf.FFT_RESULT_31_real>>16),UVM_LOW);
+                `uvm_info(get_type_name(),$sformatf(" vinf.FFT_RESULT_31_imag  %d", vinf.FFT_RESULT_31_imag>>16),UVM_LOW);
+                                
+                // `uvm_info(get_type_name(),$sformatf("Input data is d% \n input address is d% output data is d%",mon_item.data_in,mon_item.addr,mon_item.data_out),UVM_LOW);
+                // analysis_port.write(mon_item);
+            end
+        // end
+    endtask
+
+endclass

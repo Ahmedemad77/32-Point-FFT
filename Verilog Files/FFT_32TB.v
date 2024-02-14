@@ -3,7 +3,7 @@
 
 module FFT_32TB;
 localparam ADC_DATA_WIDTH =8;
-localparam DATA_WIDTH = 16;
+localparam DATA_WIDTH = 32;
 reg clk;
     reg reset;
     reg PU_enable;
@@ -105,7 +105,7 @@ reg clk;
 	wire [DATA_WIDTH-1:0] FFT_RESULT_31_imag;
 
 
-FFT_32  #( .DATA_WIDTH(16),.INTEGER(8),.FRACTION(8) ) UUT (
+FFT_32  #( .DATA_WIDTH(32),.INTEGER(16),.FRACTION(16) ) UUT (
 .clk(clk),
 .reset(reset),
 .PU_enable(PU_enable),
