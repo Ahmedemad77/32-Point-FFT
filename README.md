@@ -1,8 +1,13 @@
 # 32-Point-FFT 
+### Design
 The design is Based on Cooley-Tukey algorithm, Where FFT operation is breaked down into 2-point FFT
 Assumptions MAC works at a frequency of 100MHz.
 FFT block should output 20M samples per second.
 The samples input to the FFT block are output from an 8-bit ADC
+### Verification 
+Self checking UVM environment that Verify the result of the FFT block, the golden model is 
+implemented inside the UVM environment utilizing System Verilog DPI feature that calls C++ function 
+which call(s) python FFT function to have the result of the FFT input Vector and check it at the run time.
 
 
 # The repository contains:
@@ -13,6 +18,7 @@ The samples input to the FFT block are output from an 8-bit ADC
 * Design Document containing the design & results 
 * Verilog Files of the implemtation 
 * Result of the Timing Simulation 
+* UVM Verfication Enviroment 
 
 
 ## 32-Point-FFT Signal Flow
@@ -29,4 +35,5 @@ The samples input to the FFT block are output from an 8-bit ADC
 
 ## Timing Summary 
 ![Timing Summary](Results/Timing_Summary.PNG)
+
 
