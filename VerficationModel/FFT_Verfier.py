@@ -10,3 +10,4 @@ def fun(AdcInput,RealResult,ImagResult):
             print('Found Result is ',RealResult[i],'+',ImagResult[i],'j')  
             valid = False
     return valid
+

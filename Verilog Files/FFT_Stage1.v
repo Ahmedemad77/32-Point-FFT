@@ -7,12 +7,14 @@ module FFT_Stage1 #(
 	FRACTION = 4
 ) (
 
-
+// PU_EnabLE removed ,start_finish added,Sell Removed
 input clk,
 input reset,
-input PU_enable,
-input  [2:0] sel,
-    
+
+
+input stage1_start, 
+output stage1_Finish,
+
 
 input [DATA_WIDTH-1:0] in0_real,
 
@@ -178,6 +180,30 @@ output [DATA_WIDTH-1:0] Stage1_out31_real,
 output [DATA_WIDTH-1:0] Stage1_out31_imag
 
 );
+
+///////////////////////////CTRL Cirquit////////////////////// 
+// From the Start and for the Next 4 Cycles the stage will be active 
+
+wire internal_enable;
+reg [2:0] sel;
+// Instaniate Ctrl Shift Register 
+CtrlShiftRegister #(4) startCtrl (.clk(clk),.reset(reset),.start(stage1_start),.internal_enable(internal_enable),.finish(stage1_Finish));
+	
+
+always @(posedge clk ) begin
+    if (reset) begin
+        sel<=3'b000;
+    end
+    else if (stage1_start|internal_enable) begin
+        if (sel==3'b100) begin
+           sel <=3'b000; 
+        end else begin
+            sel <=sel+3'b001;
+        end
+    end 
+end
+
+
     MAC  #( .DATA_WIDTH(DATA_WIDTH),
 .INTEGER(INTEGER),
 .FRACTION(FRACTION) ) 

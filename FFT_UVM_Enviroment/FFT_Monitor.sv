@@ -10,8 +10,9 @@ class FFT_Monitor extends uvm_monitor;
     virtual FFT_Dut_Interface vinf;
     FFT_Seq_Item#() mon_item;
     //Define Anaylsis Port 
-    uvm_analysis_port #(FFT_Seq_Item#()) analysis_port;
-    int counter;
+    uvm_analysis_port #(FFT_Seq_Item#()) input_analysis_port;
+    uvm_analysis_port #(FFT_Seq_Item#()) output_analysis_port;
+    
     function new(string name = "FFT_monitor",uvm_component parent = null);
         super.new(name,parent);
     endfunction
@@ -22,32 +23,36 @@ class FFT_Monitor extends uvm_monitor;
         if (!uvm_config_db#(virtual FFT_Dut_Interface)::get(this,"*","FFT_INTERFACE",vinf)) begin
             `uvm_error(get_type_name(),"Can Not reterive the Interface Parmeter");
         end
-        analysis_port = new ("analysis_port",this);
+        input_analysis_port = new ("input_analysis_port",this);
+        output_analysis_port = new ("output_analysis_port",this);
         mon_item = FFT_Seq_Item#()::type_id::create();
+        
     endfunction
 
     task run_phase(uvm_phase phase);
         super.run_phase(phase);
         //Obtain the Logic Here 
-        // forever begin
-            phase.raise_objection(this);
+        forever begin
             @(posedge vinf.clk);
-            if (vinf.PU_enable) begin
+            if (vinf.start) begin
+                // phase.raise_objection(this);
                 // Register the Input Data 
                 captureInput(vinf,mon_item);
-                counter = 1;
-                while (counter<26) begin
-                    @(posedge vinf.clk);
-                    counter = counter +1;
-                end
-                captureOutput(vinf,mon_item);
-                // `uvm_info(get_type_name(),$sformatf("Input data is d% \n input address is d% output data is d%",mon_item.data_in,mon_item.addr,mon_item.data_out),UVM_LOW);
-                // analysis_port.write(mon_item);
+                // Send it to the scoreBoard by UVM Analysis Input 
+                input_analysis_port.write(mon_item);
+                
+                `uvm_info(get_type_name(),"Item Started",UVM_LOW);
             end
-            analysis_port.write(mon_item);
-            phase.drop_objection(this);
+            if(vinf.finish)begin
+                // phase.drop_objection(this);
+                captureOutput(vinf,mon_item);
+                // Send to ScoreBoard 
+                output_analysis_port.write(mon_item);
+                `uvm_info(get_type_name(),"Item Finshed",UVM_LOW);
+            end
+            
 
-        // end
+        end 
     endtask
 
     function void captureInput(virtual FFT_Dut_Interface vinf, ref FFT_Seq_Item#() mon_item );

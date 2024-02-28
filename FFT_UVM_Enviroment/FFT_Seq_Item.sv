@@ -17,7 +17,7 @@ class FFT_Seq_Item#(parameter DATA_WIDTH = 32 ,ADC_DATA_WIDTH=8 ) extends uvm_se
 	logic signed [DATA_WIDTH-1:0] FFT_RESULT_imag[32];
 	
     constraint ADC_in_real_Input { foreach (ADC_in_real[i]) 
-        ADC_in_real[i] inside { [0:100]}; 
+        ADC_in_real[i] inside { 100 }; 
       }
 
     function new (string name = "FFT_Seq_Item" );

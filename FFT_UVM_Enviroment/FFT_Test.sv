@@ -29,8 +29,13 @@ class FFT_Test extends uvm_test;
         phase.raise_objection(this);
         `uvm_info(get_type_name()," Inside Test Class",UVM_LOW);
         seq = FFT_Sequence#(`DATA_WIDTH,`ADC_DATA_WIDTH)::type_id::create("testSequence");
-        void'(seq.randomize());
-        seq.start(env.agentInstanse.SequencerInstanse);
+        // repeat(2) begin
+            void'(seq.randomize());
+            seq.start(env.agentInstanse.SequencerInstanse);       
+        // end
+        #50
+        // void'(seq.randomize());
+            seq.start(env.agentInstanse.SequencerInstanse);  
         #1000
         phase.drop_objection(this);
     endtask
@@ -53,7 +58,8 @@ module FFT_Test;
     FFT_32  #( .DATA_WIDTH(32),.INTEGER(16),.FRACTION(16) ) UUT (
     .clk(clk),
     .reset(reset),
-    .PU_enable(Intf.PU_enable),
+    .start(Intf.start),
+    .finish(Intf.finish),
     .ADC_in0_real(Intf.ADC_in_real[0]),
     .ADC_in1_real(Intf.ADC_in_real[1]),
     .ADC_in2_real(Intf.ADC_in_real[2]),

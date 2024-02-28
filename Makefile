@@ -20,7 +20,7 @@ foreign_windows:  foreign.c
 	# pythonexports.obj 		      -> Specifies an object file to include in the Compilation
 	# -lmtipli 			      -> Links the "mtipli" library 
 	# map this directories for your system
-	g++ -IC:/questasim64_2021.1/include "-LC:/Program Files/Python312/libs" -shared -g -o foreign.dll FFT_Verifer.cpp -lpython312 exports.obj -lmtipli -LC:/questasim64_2021.1/win64
+	g++ -IC:/questasim64_2021.1/include "-LC:/Program Files/Python312/libs" -shared -g -o foreign.dll "C:/Verfication/Practice/Labs/FFT_Project/Git/32-Point-FFT/VerficationModel/FFT_Verifer.cpp" -lpython312 exports.obj -lmtipli -LC:/questasim64_2021.1/win64
 
 sim:
 	vsim opt_test -sv_lib foreign

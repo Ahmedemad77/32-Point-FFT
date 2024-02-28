@@ -11,9 +11,9 @@ module FFT_32 #(
 
     input clk,
     input reset,
-    input PU_enable,
-
-
+	// Add start signal 
+    input start,
+	output finish,
     input [ADC_DATA_WIDTH-1:0] ADC_in0_real,
 
     input [ADC_DATA_WIDTH-1:0] ADC_in1_real,
@@ -180,6 +180,13 @@ module FFT_32 #(
 );
 
 
+
+	wire stage1_Finish;
+	wire stage2_Finish;
+	wire stage3_Finish;
+	wire stage4_Finish;
+
+	
 	wire [DATA_WIDTH-1:0] in0_real;
     wire [DATA_WIDTH-1:0] in1_real;
     wire [DATA_WIDTH-1:0] in2_real;
@@ -249,19 +256,7 @@ assign  in31_real = { { (INTEGER-ADC_DATA_WIDTH) {ADC_in31_real[ADC_DATA_WIDTH-1
 ////////////////////////   Selction Control   ///////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
 
-reg [2:0]sel;
-always @(posedge clk ) begin
-    if (reset) begin
-        sel<=3'b000;
-    end
-    else if (PU_enable) begin
-        if (sel==3'b100) begin
-           sel <=3'b000; 
-        end else begin
-            sel <=sel+3'b001;
-        end
-    end 
-end
+
 /////////////////////////////////////////////////////////////////////////////
 ////////////////////////        Constants       //////////// ////////////////
 /////////////////////////////////////////////////////////////////////////////
@@ -460,8 +455,8 @@ FFT_Stage1  #( .DATA_WIDTH(DATA_WIDTH),
 
 FFT_Stage1Unit (	.clk(clk),
 	.reset(reset),
-	.PU_enable(PU_enable),
-	.sel(sel),
+	.stage1_start(start),
+	.stage1_Finish(stage1_Finish),
 	.in0_real(in0_real),
 	.in1_real(in1_real),
 	.in2_real(in2_real),
@@ -639,8 +634,8 @@ FFT_Stage2  #( .DATA_WIDTH(DATA_WIDTH),
 
 FFT_Stage2Unit (	.clk(clk),
 	.reset(reset),
-	.PU_enable(PU_enable),
-	.sel(sel),
+	.stage2_start(stage1_Finish),
+	.stage2_Finish(stage2_Finish),
 	.Stage1_out0_real(Stage1_out0_real),
 	.Stage1_out0_imag(Stage1_out0_imag),
 	.Stage1_out1_real(Stage1_out1_real),
@@ -853,8 +848,8 @@ FFT_Stage3  #( .DATA_WIDTH(DATA_WIDTH),
 
 FFT_Stage3Unit (	.clk(clk),
 	.reset(reset),
-	.PU_enable(PU_enable),
-	.sel(sel),
+	.stage3_start(stage2_Finish),
+	.stage3_Finish(stage3_Finish),
 	.Stage2_out0_real(Stage2_out0_real),
 	.Stage2_out0_imag(Stage2_out0_imag),
 	.Stage2_out1_real(Stage2_out1_real),
@@ -1066,10 +1061,10 @@ FFT_Stage4  #( .DATA_WIDTH(DATA_WIDTH),
 .INTEGER(INTEGER),
 .FRACTION(FRACTION) ) 
 
-FFT_Stage4Unit (	.clk(clk),
+FFT_Stage4Unit (.clk(clk),
 	.reset(reset),
-	.PU_enable(PU_enable),
-	.sel(sel),
+	.stage4_start(stage3_Finish),
+	.stage4_Finish(stage4_Finish),
 	.Stage3_out0_real(Stage3_out0_real),
 	.Stage3_out0_imag(Stage3_out0_imag),
 	.Stage3_out1_real(Stage3_out1_real),
@@ -1229,8 +1224,8 @@ FFT_Stage5  #( .DATA_WIDTH(DATA_WIDTH),
 
 FFT_Stage5Unit (	.clk(clk),
 	.reset(reset),
-	.PU_enable(PU_enable),
-	.sel(sel),
+	.stage5_start(stage4_Finish),
+	.stage5_Finish(finish),
 	.Stage4_out0_real(Stage4_out0_real),
 	.Stage4_out0_imag(Stage4_out0_imag),
 	.Stage4_out1_real(Stage4_out1_real),

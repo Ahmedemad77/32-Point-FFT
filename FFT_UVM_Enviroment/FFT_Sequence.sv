@@ -12,7 +12,7 @@ class FFT_Sequence#(parameter DATA_WIDTH = 32 ,ADC_DATA_WIDTH=8)  extends uvm_se
     endfunction
 
     task pre_body();
-        `uvm_info(get_type_name(),"Inside FFT Sequence",UVM_LOW);
+        `uvm_info(get_type_name(),"Inside pre_body Sequence",UVM_LOW);
         if(starting_phase!=null)begin
            starting_phase.raise_objection(this,"FFT sequence raised Objection"); 
         end
@@ -25,10 +25,11 @@ class FFT_Sequence#(parameter DATA_WIDTH = 32 ,ADC_DATA_WIDTH=8)  extends uvm_se
         void'(data.randomize());
         send_request(data);
         wait_for_item_done();
+
     endtask
 
     task post_body();
-        `uvm_info(get_type_name(),"Inside mem Seq post body ",UVM_NONE);
+        `uvm_info(get_type_name(),"Inside  Seq post body ",UVM_NONE);
         if(starting_phase!=null)begin
            starting_phase.drop_objection(this,"mem sequence raised Objection"); 
         end

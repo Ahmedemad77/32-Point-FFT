@@ -104,11 +104,14 @@ reg clk;
 	wire [DATA_WIDTH-1:0] FFT_RESULT_31_real;
 	wire [DATA_WIDTH-1:0] FFT_RESULT_31_imag;
 
-
+	reg start;
+	wire finish;
 FFT_32  #( .DATA_WIDTH(32),.INTEGER(16),.FRACTION(16) ) UUT (
 .clk(clk),
 .reset(reset),
 .PU_enable(PU_enable),
+.start(start),
+.finish(finish),
 .ADC_in0_real(ADC_in0_real),
 .ADC_in1_real(ADC_in1_real),
 .ADC_in2_real(ADC_in2_real),
@@ -255,9 +258,10 @@ ADC_in28_real =  8'b00011100   ;
 ADC_in29_real =  8'b00011101   ;
 ADC_in30_real =  8'b00011110   ;
 ADC_in31_real =  8'b00011111   ;
-
+start = 1;
 //Wait For (40 Nsec) then cahnge the inut 
 #(CLK_PERIOD*4);
+start = 0;
 /////////////////////////////////////////////////////////////////////////////
 ////////////////////////  Second Input 		 ///////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
@@ -297,6 +301,7 @@ ADC_in31_real =  8'b00000001   ;
 
 //Wait For (50 Nsec) then cahnge the inut 
 #(CLK_PERIOD*4);
+
 /////////////////////////////////////////////////////////////////////////////
 ////////////////////////  Third Input 		 ///////////////////////////////
 /////////////////////////////////////////////////////////////////////////////

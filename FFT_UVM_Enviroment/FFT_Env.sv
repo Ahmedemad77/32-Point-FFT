@@ -24,7 +24,9 @@ class FFT_Env extends uvm_env;
     function void connect_phase(uvm_phase phase);
         super.connect_phase(phase);
         //Connect Monitor Port and ScoreBoard
-        agentInstanse.monitorInstanse.analysis_port.connect(scoreBoardInstanse.item_collect_export);
+        agentInstanse.monitorInstanse.input_analysis_port.connect(scoreBoardInstanse.input_item_collect_export);
+        agentInstanse.monitorInstanse.output_analysis_port.connect(scoreBoardInstanse.output_item_collect_export);
+
     endfunction
 
 endclass
